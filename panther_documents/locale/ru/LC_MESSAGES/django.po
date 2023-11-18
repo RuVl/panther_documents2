@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-19 22:53+0300\n"
+"POT-Creation-Date: 2023-11-19 00:56+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,12 +30,12 @@ msgstr "Войти"
 
 #: .\authapp\templates\auth\office.html:19
 #: .\authapp\templates\auth\office.html:41
-#: .\templates\components\header.html:35
+#: .\templates\components\header.html:34
 msgid "My purchases"
 msgstr "Мои покупки"
 
 #: .\authapp\templates\auth\office.html:20
-#: .\templates\components\header.html:36
+#: .\templates\components\header.html:35
 msgid "Support"
 msgstr "Тех. Поддержка"
 
@@ -73,7 +73,7 @@ msgstr "Успех"
 
 #: .\authapp\templates\auth\verification.html:25
 #: .\authapp\templates\auth\verification.html:30
-#: .\templates\components\header.html:14 .\templates\components\header.html:32
+#: .\templates\components\header.html:13 .\templates\components\header.html:31
 msgid "Office"
 msgstr "Личный кабинет"
 
@@ -81,86 +81,89 @@ msgstr "Личный кабинет"
 msgid "Already activated"
 msgstr "Уже активирован"
 
-#: .\mainapp\templates\main\products.html:36
+#: .\mainapp\templates\main\passports.html:45
 msgid "Add to cart"
 msgstr "Добавить в корзину"
 
-#: .\mainapp\templates\main\products.html:37
-#: .\venv\Lib\site-packages\django\utils\text.py:254
+#: .\mainapp\templates\main\passports.html:46
+#: .\venv\Lib\site-packages\django\utils\text.py:269
 msgid "or"
 msgstr "или"
 
-#: .\mainapp\templates\main\products.html:38
-#: .\mainapp\templates\main\products.html:74
+#: .\mainapp\templates\main\passports.html:47
+#: .\mainapp\templates\main\passports.html:96
 msgid "Buy"
 msgstr "Купить"
 
-#: .\mainapp\templates\main\products.html:52
+#: .\mainapp\templates\main\passports.html:62
 msgid "Passport"
 msgstr "Паспорт"
 
-#: .\mainapp\templates\main\products.html:53
+#: .\mainapp\templates\main\passports.html:63
 msgid "Count"
 msgstr "Кол-во"
 
-#: .\mainapp\templates\main\products.html:54
+#: .\mainapp\templates\main\passports.html:64
 msgid "Unit price"
 msgstr "За 1 шт."
+
+#: .\mainapp\templates\main\passports.html:108
+msgid "All products are sold out"
+msgstr "Все товары распроданы"
 
 #: .\mainapp\templates\main\support.html:17
 msgid "Write to support"
 msgstr "Написать в поддержку"
 
-#: .\panther_documents\settings.py:144
+#: .\panther_documents\settings.py:147
 msgid "English"
 msgstr "Английский"
 
-#: .\panther_documents\settings.py:145
+#: .\panther_documents\settings.py:148
 msgid "Russian"
 msgstr "Русский"
 
-#: .\paymentapp\forms.py:11
+#: .\paymentapp\forms.py:15
 msgid "Email"
 msgstr "Почта"
 
-#: .\paymentapp\forms.py:14
+#: .\paymentapp\forms.py:16
 msgid "Choose products"
 msgstr "Выберите товары"
 
-#: .\paymentapp\forms.py:18
+#: .\paymentapp\forms.py:19
 msgid "Payment method"
 msgstr "Метод оплаты"
 
-#: .\paymentapp\forms.py:42
+#: .\paymentapp\forms.py:78
 msgid "Email not found"
 msgstr "Почта не найдена"
 
-#: .\paymentapp\forms.py:47
+#: .\paymentapp\forms.py:83
 msgid "Not paid"
 msgstr "Не оплачено"
 
-#: .\paymentapp\templates\payment\cart_page.html:25
+#: .\paymentapp\templates\payment\cart_page.html:27
 msgid "You have not added any products to the cart"
 msgstr "Вы не добавили товары в корзину"
 
-#: .\paymentapp\templates\payment\cart_page.html:30
+#: .\paymentapp\templates\payment\cart_page.html:33
 msgid "Cart"
 msgstr "Корзина"
 
-#: .\paymentapp\templates\payment\cart_page.html:33
+#: .\paymentapp\templates\payment\cart_page.html:37
 msgid "Total"
 msgstr "Итого"
 
-#: .\paymentapp\templates\payment\cart_page.html:36
+#: .\paymentapp\templates\payment\cart_page.html:44
 msgid "Select payment method"
 msgstr "Выберите способ оплаты"
 
-#: .\paymentapp\templates\payment\cart_page.html:47
+#: .\paymentapp\templates\payment\cart_page.html:55
 msgid "Enter email"
 msgstr "Введите email"
 
-#: .\paymentapp\templates\payment\cart_page.html:64
-#: .\paymentapp\templates\payment\plisio.html:4
+#: .\paymentapp\templates\payment\cart_page.html:72
 msgid "Pay"
 msgstr "Оплатить"
 
@@ -171,6 +174,10 @@ msgstr "Введите email для получения файлов."
 #: .\paymentapp\templates\payment\send_links.html:31
 msgid "Send links"
 msgstr "Отправить ссылки"
+
+#: .\paymentapp\views.py:46
+msgid "Can not create transaction. Try again or write to support."
+msgstr "Не удалось создать транзакцию. Попробуйте ещё раз или обратитесь в поддержку."
 
 #: .\templates\404.html:33
 msgid "Page not found!"
@@ -190,11 +197,11 @@ msgstr "Документация"
 msgid "Change password"
 msgstr "Сменить пароль"
 
-#: .\templates\components\header.html:11 .\templates\components\header.html:29
+#: .\templates\components\header.html:10 .\templates\components\header.html:28
 msgid "Sign in"
 msgstr "Вход"
 
-#: .\templates\components\header.html:12 .\templates\components\header.html:30
+#: .\templates\components\header.html:11 .\templates\components\header.html:29
 msgid "Sign up"
 msgstr "Регистрация"
 
@@ -1227,14 +1234,14 @@ msgstr "Декабрь"
 msgid "This is not a valid IPv6 address."
 msgstr "Это невалидный IPv6 адрес."
 
-#: .\venv\Lib\site-packages\django\utils\text.py:78
+#: .\venv\Lib\site-packages\django\utils\text.py:84
 #, python-format
 msgctxt "String to return when truncating text"
 msgid "%(truncated_text)s…"
 msgstr "%(truncated_text)s…"
 
 #. Translators: This string is used as a separator between list elements
-#: .\venv\Lib\site-packages\django\utils\text.py:273
+#: .\venv\Lib\site-packages\django\utils\text.py:288
 #: .\venv\Lib\site-packages\django\utils\timesince.py:135
 msgid ", "
 msgstr ", "
