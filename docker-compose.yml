@@ -41,7 +41,6 @@ services:
         ports:
             - "8000:8000"
 # запускаем gunicorn
-        command: "gunicorn -c gunicorn.py panther_documents.wsgi"
         depends_on:
             - postgres
 

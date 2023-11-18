@@ -2,8 +2,9 @@
 
 python3.11 manage.py collectstatic
 
-python3.11 manage.py makemigrations
-python3.11 manage.py migrate
+sh migrate.sh || { echo "Can't resolve migrations" ; exit 2; }
 
 python3.11 manage.py currencies --import=USD --import=EUR
 python3.11 manage.py updatecurrencies oxr --base=USD
+
+gunicorn -c gunicorn.py panther_documents.wsgi

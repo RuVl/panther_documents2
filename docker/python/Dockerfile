@@ -6,7 +6,6 @@ WORKDIR /srv/www/panther_documents
 
 RUN pip3 install -r requirements.txt
 
-RUN chmod +x ./docker/python/docker-entrypoint.sh
+RUN chmod +x entrypoint.sh
 
-ENTRYPOINT ["docker-entrypoint.sh"]
-
+ENTRYPOINT ["entrypoint.sh"]
