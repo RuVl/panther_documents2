@@ -1,0 +1,106 @@
+{% extends 'site_page.html' %}
+{% load static i18n currency %}
+
+
+{% block additional_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'main/css/products.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'main/css/popup.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'libs/fontawesome/css/fontawesome.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'libs/fontawesome/css/duotone.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'libs/fontawesome/css/solid.css' %}">
+{% endblock %}
+
+
+{% block additional_scripts %}
+    <script src="{% static 'main/js/passport2cart.js' %}"></script>
+{% endblock %}
+
+
+{% block popup %}
+    {% currency_context %}
+    <div class="popup">
+        <div class="popup_content">
+            <div class="popup_header">
+                <i class="fa-duotone fa-xmark fa-xl popup_close"></i>
+            </div>
+
+            <form method="post" class="popup_form">
+                <div class="form_content">
+                    <div class="product_name_div">
+                        <span class="product_name">Some product name</span>
+                    </div>
+
+                    <div class="quantity_div">
+                        <div class="counter_ co_mi"><i class="fa-solid fa-minus"></i></div>
+                        <div class="quantity">0</div>
+                        <div class="counter_ co_pl"><i class="fa-solid fa-plus"></i></div>
+                    </div>
+
+                    <div class="price_div_popup">
+                        <span class="price">0</span>
+                        <span class="symbol">{{ CURRENCY.symbol }}</span>
+                    </div>
+
+                    <div class="form_content_btns">
+                        <button type="button" class="cart_add_btn">{% trans 'Add to cart' %}</button>
+                        <p class="or">{% trans 'or' %}</p>
+                        <button type="button" class="pay_btn">{% trans 'Buy' %}</button>
+                    </div>
+               </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block main %}
+    <div class="container">
+        <table class="products-table">
+            <thead>
+            <tr class="table_head">
+                <th>{% trans 'Passport' %}</th>
+                <th>{% trans 'Count' %}</th>
+                <th>{% trans 'Unit price' %}</th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% currency_context %}
+            {% for country in countries %}
+                <tr class="country-tr">
+                    <td colspan="10">{{ country.get_title }}</td>
+                </tr>
+                {% for product in country.passport_set.all %}
+                    <!--suppress HtmlUnknownAttribute -->
+                    <tr class="product-tr" product-type="{{ product.type }}">
+                        <td class="product-id" style="display: none;">{{ product.id }}</td>
+                        <td class="product-title">{{ product.get_title }}</td>
+                        <td class="product-count">{{ product.get_count }}</td>
+                        <!--suppress HtmlUnknownAttribute -->
+                        <td class="product-price price-{{ CURRENCY_CODE }}" base-currency-price="{{ product.price }}">
+                            <span class="price">
+                                {% if CURRENCY_CODE == 'RUB' %}
+                                    {% show_currency product.price CURRENCY_CODE 0 %}
+                                {% else %}
+                                    {{ product.price|currency:CURRENCY_CODE }}
+                                {% endif %}
+                            </span>
+                            <span class="symbol">{{ CURRENCY.symbol }}</span>
+                        </td>
+                        <td class="product-buy">
+                            <a href="#" class="product-buy-a popup_open">
+                                <i class="fa-duotone fa-cart-shopping"></i>
+                                {% trans 'Buy' %}
+                            </a>
+                        </td>
+                        <td class="tooltip_content">
+                            <p>{{ product.get_title }}</p>
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'site_page.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block additional_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'main/css/products.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'libs/fontawesome/css/fontawesome.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'libs/fontawesome/css/duotone.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'libs/fontawesome/css/solid.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'libs/fontawesome/css/brands.css' %}">
+{% endblock %}
+
+
+{% block main %}
+    <div class="container">
+        <h3 style="font-weight: normal">
+            {% trans 'Write to support' %}
+            <a class="default_a" href="https://t.me/Panther_Documents">@Panther_Documents</a>
+        </h3>
+        <div class="s_links">
+            <a href="https://t.me/Panther_Documents">
+                <i class="fa-brands fa-telegram fa-2xl"></i>
+            </a>
+        </div>
+    </div>
+{% endblock %}

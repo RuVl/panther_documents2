@@ -1,0 +1,45 @@
+{% load i18n %}
+
+<div class="container">
+    <nav class="menu">
+        <div class="header_title">
+            <a href="{% url 'main:home' %}"><h2>PantherDoc</h2></a>
+        </div>
+        <div class="header_content">
+            {% if not user.is_authenticated %}
+                <a class="not-mobile" href="{% url 'auth:login' %}">{% trans 'Sign in' %}</a>
+                <a class="not-mobile" href="{% url 'auth:register' %}">{% trans 'Sign up' %}</a>
+            {% else %}
+                <a class="not-mobile" href="{% url 'auth:office' %}">{% trans 'Office' %}</a>
+            {% endif %}
+
+            <a href="{% url 'payment:cart' %}" class="header_cart">
+                <i class="fa-duotone fa-cart-shopping"></i>
+                <span class="cart_counter" id="cart-counter">0</span>
+            </a>
+
+            <div class="burger_menu" id="menu-control">
+                {% include 'components/burger2close.html' %}
+            </div>
+        </div>
+    </nav>
+    <nav class="hide_element_mobile header_menu" id="header-menu">
+        {% if not user.is_authenticated %}
+            <a class="mobile" href="{% url 'auth:login' %}">{% trans 'Sign in' %}</a>
+            <a class="mobile" href="{% url 'auth:register' %}">{% trans 'Sign up' %}</a>
+        {% else %}
+            <a class="mobile" href="{% url 'auth:office' %}">{% trans 'Office' %}</a>
+        {% endif %}
+
+        <a href="{% url 'payment:send-links' %}">{% trans 'My purchases' %}</a>
+        <a href="{% url 'main:support' %}">{% trans 'Support' %}</a>
+    </nav>
+    <div class="pickers">
+        <div class="currency-picker">
+            {% include 'components/currency_switch.html' %}
+        </div>
+        <div class="lang-picker">
+            {% include 'components/lang_switch.html' %}
+        </div>
+    </div>
+</div>

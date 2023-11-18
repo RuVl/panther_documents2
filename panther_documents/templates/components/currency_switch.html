@@ -1,0 +1,19 @@
+{% load currency %}
+{% currency_context %}
+
+<div class="curr-select" id="currency-select">
+    <form action="{% url 'currencies_set_currency' %}" method="post">
+        {% csrf_token %}
+        <input id="curr-picker" name="currency_code" type="hidden" value="{{ CURRENCY_CODE }}">
+    </form>
+
+    <div class="curr-selected"><span>{{ CURRENCY.code }}</span></div>
+    <div class="options-container">
+        {% for currency in CURRENCIES %}
+            <div class="option">
+                <label for="curr_{{ currency.code }}">{{ currency.code }}</label>
+                <input type="radio" id="curr_{{ currency.code }}" value="{{ currency.code }}">
+            </div>
+        {% endfor %}
+    </div>
+</div>

@@ -1,0 +1,35 @@
+{% extends 'site_page.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block additional_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'auth/css/auth.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'libs/fontawesome/css/fontawesome.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'libs/fontawesome/css/duotone.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'libs/fontawesome/css/solid.css' %}">
+{% endblock %}
+
+
+{% block main %}
+    <div class="page_wrap">
+        <div class="form_wrap">
+            <div class="alert">
+                <ul>
+                    {% for field in form %}
+                        {% if field.errors %}<li>{{ field.label }}: {{ field.errors|striptags }}</li>{% endif %}
+                    {% endfor %}
+                </ul>
+                {{form.non_field_errors}}
+            </div>
+            
+            <h2>{% trans 'Registration' %}</h2>
+            <form method="post" class="form_inside">
+                {% for field in form %}
+                    {{field}}
+                {% endfor %}
+                {% csrf_token %}
+                <button type="submit" id="input_submit">{% trans 'Create account' %}</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

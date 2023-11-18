@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block main %}
+	<h2>Thanks for buying!</h2>
+    <h3>
+        If you are not received mail with links to files - go to
+        <a href="{% url 'payment:send-links' %}">this</a> page.
+    </h3>
+{% endblock %}

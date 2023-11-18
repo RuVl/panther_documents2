@@ -1,0 +1,151 @@
+.product_list {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.product_item {
+  width: 100%;
+  display: flex;
+  justify-content: right;
+  flex-direction: row;
+  align-items: center;
+  border: 1px solid #96c0d9;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 5px 0;
+}
+
+.final_price_div {
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  height: 50px;
+}
+.final_price_div > span {
+  font-size: 17px;
+  margin-right: 7px;
+}
+.cart_pay_btn {
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #96c0d9;
+  border-radius: 5px;
+  display: block;
+  height: min-content;
+  padding: 7px;
+  font-weight: bold;
+  transition: 0.2s;
+  float:right;
+}
+.cart_pay_btn:hover {
+  cursor: pointer;
+  background-color: #7895cb;
+  transition: 0.2s;
+}
+.pay_btn_div {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.empty_cart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--min-height);
+}
+.empty_cart a {
+  font-size: 16px;
+  margin: 0;
+  text-decoration: none;
+  color: blue;
+}
+
+.cart_page_header {
+  margin: 0;
+  padding: 18px 0;
+}
+
+.inactive {
+  display: none;
+}
+
+.alert ul {
+  padding-inline-start: 20px;
+}
+
+.form_content input[type=email] {
+  margin-top: 20px;
+  margin-bottom: 15px;
+}
+
+.name_div {
+  flex: 10;
+  margin: auto 0;
+}
+
+.quantity_div, .price_div {
+  text-align: center;
+  flex: 2;
+}
+
+.remove_div {
+  text-align: center;
+  flex: 1;
+}
+
+.remove_div > span {
+  cursor: pointer;
+  color: rgba(234, 19, 42, 0.66);
+}
+
+/* only - remove support for legacy browsers */
+@media only screen and (max-width: 767px) {
+  .container {
+    padding: 0 7px;
+    margin: 0;
+  }
+  .product_list {
+    margin: 0 10px;
+  }
+  .product_item {
+    padding: 5px;
+    grid-template-columns: 15fr 2fr 2fr 1fr;
+    gap: 7px;
+    width: 100%;
+  }
+
+  .form_content input {
+    font-size: 14px;
+  }
+
+  .remove_div > span {
+    font-size: 0;
+  }
+
+  .remove_div > span::before {
+    font-size: 20px;
+    font-family: "Font Awesome 6 Pro";
+    content: "\f00d";
+  }
+
+  .final_price_div {
+    padding: 10px 0 10px 0;
+  }
+  .pay_btn_div {
+    padding: 10px 0 10px 0;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .product_item {
+    font-size: 14px;
+  }
+
+  .name_div {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+}

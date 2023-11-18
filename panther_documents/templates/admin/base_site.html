@@ -1,0 +1,55 @@
+{% extends "admin/base_site.html" %}
+{% load static i18n %}
+
+{% block extrahead %}
+    <link rel="shortcut icon" href="{% static 'favicon.ico' %}">
+    <style>
+      img.i18n_flag {
+        width: 16px;
+        height: 10px;
+        vertical-align: middle;
+      }
+      form.i18n_form {
+        all: unset;
+      }
+      form.i18n_form > button {
+        all:unset;
+        cursor: pointer;
+      }
+    </style>
+{% endblock %}
+
+{% block userlinks %}
+    {% get_current_language as LANGUAGE_CODE %}
+    {% get_language_info for LANGUAGE_CODE as cur_lang %}
+
+    {% get_available_languages as LANGUAGES %}
+    {% get_language_info_list for LANGUAGES as languages %}
+
+    {% for lang in languages %}
+        {% with 'images/flags/'|add:lang.code|add:'.svg' as svg_path %}
+            <form method="post" action="{% url 'set_language' %}" class="i18n_form">
+                {% csrf_token %}
+                <input type="hidden" name="language" value="{{ lang.code }}">
+                <button type="submit"><img src="{% static svg_path %}" class="i18n_flag" alt="{{ lang.code }}"></button> /
+            </form>
+        {% endwith %}
+    {% endfor %}
+    {% if site_url %}
+        <a href="{{ site_url }}">{% translate 'View site' %}</a> /
+    {% endif %}
+    {% if user.is_active and user.is_staff %}
+        {% url 'django-admindocs-docroot' as docsroot %}
+        {% if docsroot %}
+            <a href="{{ docsroot }}">{% translate 'Documentation' %}</a> /
+        {% endif %}
+    {% endif %}
+    {% if user.has_usable_password %}
+    <a href="{% url 'admin:password_change' %}">{% translate 'Change password' %}</a> /
+    {% endif %}
+    <form id="logout-form" method="post" action="{% url 'admin:logout' %}">
+        {% csrf_token %}
+        <button type="submit">{% translate 'Log out' %}</button>
+    </form>
+    {% include "admin/color_theme_toggle.html" %}
+{% endblock %}

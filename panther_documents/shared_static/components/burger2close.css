@@ -1,0 +1,52 @@
+/* Default values can be overriden */
+.burger {
+  --burger-width: 50px;
+  --burger-height: 5px;
+  --burger-gap: 8px;
+  --burger-color: #ecf0f1;
+  --burger-anim-speed: 1;
+  --burger-padding: 5px;
+}
+
+.burger {
+  padding: var(--burger-padding);
+  cursor: pointer;
+}
+
+.burger .line {
+  width: var(--burger-width);
+  height: var(--burger-height);
+  background-color: var(--burger-color);
+  display: block;
+  margin: var(--burger-gap) auto;
+  transition: all 0.3s ease-in-out;
+  border-radius: 1em;
+}
+
+/* Animation */
+.burger > .inner {
+  transition: all calc(.5s * var(--burger-anim-speed)) ease-in-out;
+}
+
+.burger > .inner.is-active {
+  transition: all calc(.3s * var(--burger-anim-speed)) ease-in-out;
+  transition-delay: calc(.6s * var(--burger-anim-speed));
+  transform: rotate(45deg);
+}
+
+.burger > .inner.is-active > .line:nth-child(2){
+  width: 0;
+}
+
+.burger > .inner.is-active > .line:nth-child(1),
+.burger > .inner.is-active > .line:nth-child(3) {
+  transition-delay: calc(.3s * var(--burger-anim-speed));
+}
+
+.burger > .inner.is-active > .line:nth-child(1) {
+  transform: translateY(calc(var(--burger-gap) + var(--burger-height)));
+}
+
+.burger > .inner.is-active > .line:nth-child(3) {
+  transform: translateY(calc(0em - var(--burger-gap) - var(--burger-height))) rotate(90deg);
+}

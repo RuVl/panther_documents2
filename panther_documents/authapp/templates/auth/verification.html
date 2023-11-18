@@ -1,0 +1,33 @@
+{% extends 'site_page.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block additional_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'auth/css/verification.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'libs/fontawesome/css/fontawesome.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'libs/fontawesome/css/duotone.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'libs/fontawesome/css/solid.css' %}">
+{% endblock %}
+
+
+{% block main %}
+    <div class="content_wrap">
+        {% if activate_status == "wait" %}
+            <p>{% trans 'Check your email, please' %}</p>
+        {% endif %}
+
+        {% if activate_status == "fail" %}
+            <p>{% trans 'Wrong activation code' %}</p>
+        {% endif %}
+
+        {% if activate_status == "success" %}
+            <p>{% trans 'Success' %}</p>
+            <a href="{% url 'auth:office' %}">{% trans 'Office' %}</a>
+        {% endif %}
+
+        {% if activate_status == "already" %}
+            <p>{% trans 'Already activated' %}</p>
+            <a href="{% url 'auth:office' %}">{% trans 'Office' %}</a>
+        {% endif %}
+    </div>
+{% endblock %}

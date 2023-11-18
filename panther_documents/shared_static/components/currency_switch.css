@@ -1,0 +1,88 @@
+.curr-select {
+  --width: 80px;
+  --height: 35px;
+
+  --bg-color: #2f3640;
+  --bg-hover-color: #414b57;
+  --border: none;
+  --text-color: #f5f6fa;
+
+  width: var(--width);
+  height: var(--height);
+}
+
+/*noinspection DuplicatedCode*/
+.curr-select > .options-container {
+  position: relative;
+  background: var(--bg-color);
+  color: var(--text-color);
+  max-height: 0;
+  width: 100%;
+  opacity: 0;
+  transition: all 0.4s;
+  border-radius: 8px;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.curr-select > .curr-selected {
+  background: var(--bg-color);
+  border-radius: 8px;
+  color: var(--text-color);
+  position: relative;
+  border: var(--border);
+}
+
+.curr-select > .curr-selected::after {
+  content: "";
+  background-size: contain;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%23f5f6fa' d='M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z'/%3E%3Cpath fill='none' d='M0 0h24v24H0V0z'/%3E%3C/svg%3E") no-repeat center center;
+
+  position: absolute;
+  height: 100%;
+  width: 32px;
+  right: 0;
+  top: 0;
+
+  transition: all 0.4s;
+}
+
+.curr-select.active > .options-container {
+  max-height: 100px;
+  opacity: 1;
+  border: var(--border);
+}
+
+.curr-select.active > .curr-selected::after {
+  transform: rotateX(180deg);
+}
+
+.curr-select > .curr-selected,
+.curr-select .option {
+  display: flex;
+  align-items: center;
+  height: var(--height);
+  cursor: pointer;
+}
+
+.curr-select > .curr-selected > span,
+.curr-select label {
+  padding-left: 12px;
+  cursor: inherit;
+}
+
+.curr-select > .curr-selected > form {
+  display: none;
+}
+
+.curr-select .option:hover {
+  background: var(--bg-hover-color);
+}
+
+.curr-select label {
+  cursor: pointer;
+}
+
+.curr-select .option > input[type=radio] {
+  display: none;
+}

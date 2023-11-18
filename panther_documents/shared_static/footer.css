@@ -1,0 +1,15 @@
+footer {
+  border-top: 1px solid #7895cb;
+  height: 100px;
+}
+
+footer > .container {
+  height: 100%;
+}
+
+.footer_wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+	height: 100%;
+}

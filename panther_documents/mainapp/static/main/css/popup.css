@@ -1,0 +1,144 @@
+/* POPUP STYLES */
+.body_popup {
+  overflow: hidden;
+}
+.popup {
+  width: 100vw;
+  height: 100vh;
+  /* background-color: #7895cb; */
+  display: none;
+  position: fixed;
+  z-index: 101;
+  top: 0;
+  left: 0;
+}
+.popup.active {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.popup_content {
+  background-color: #fff;
+  padding: 30px 30px;
+  width: 250px;
+  height: 300px;
+  border-radius: 10px;
+  /* display: flex; */
+  flex-direction: column;
+  justify-content: space-between;
+}
+.popup_close {
+  cursor: pointer;
+}
+.popup_form {
+  height: 100%;
+}
+.form_content {
+  /* display: flex;
+    flex-direction: column; */
+  /* display: grid; */
+  /* grid-template-rows: 1fr 1fr 3fr; */
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.form_content_btns {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.cart_add_btn,
+.pay_btn {
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #96c0d9;
+  border-radius: 5px;
+  display: block;
+  height: min-content;
+  padding: 7px;
+  font-weight: bold;
+  transition: 0.2s;
+}
+.cart_add_btn:hover,
+.pay_btn:hover {
+  cursor: pointer;
+  background-color: #7895cb;
+  transition: 0.2s;
+}
+.email_input, input[type=email] {
+  padding: 10px;
+  margin: 3px 0;
+  outline: none;
+  box-shadow: none;
+  border-radius: 5px;
+  border: 2px solid #e9ebed;
+  background-color: #fff;
+}
+.email_input:focus, input[type=email]:focus {
+  border-color: #96c0d9;
+}
+.email_input_l {
+  margin-top: 30px;
+}
+
+.popup_header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-height: 10px;
+  /* padding-bottom: 10px;
+    border-bottom: 2px solid #96c0d9; */
+}
+.popup_header h2, h3 {
+  margin: 0;
+}
+.or {
+  text-align: center;
+  margin: 5px 0;
+}
+.popup .price {
+  padding-right: 3px;
+}
+.price_div_popup {
+  margin-top: 15px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+.product_name_div {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.quantity_div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.popup .quantity_div {
+  margin-top: 15px;
+}
+
+.quantity_div > div {
+  padding: 3px;
+}
+
+.quantity_div .counter_ {
+  cursor: pointer;
+}
+
+.quantity_div .counter_.disabled {
+  cursor: default !important;
+  opacity: .5;
+}
+
+@media (max-width: 767px) {
+  input {
+    font-size: 14px;
+  }
+}

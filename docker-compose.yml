@@ -1,0 +1,54 @@
+version: '3.7'
+
+# хранилища
+volumes:
+    pgdata:
+        driver: local
+
+services:
+    nginx:
+# при падении будет стараться подняться
+        restart: always
+# только свежий nginx
+        image: nginx:latest
+# слушает порт 8080
+        expose:
+          - 8080
+# мапаем порт 80 на его 8080. Тогда сайт будет доступен по адресу localhost. Убедись, что порт у тебя не занят.
+        ports:
+          - "80:8080"
+# монтируем только те директории, в которых лежит статика, т.к. nginx с динамикой не будет работать. Также директорию с логами и файл настройки, который мы подготовили.
+        volumes:
+            - ./panther_documents/static:/srv/www/panther_documents/static
+            - ./panther_documents/media:/srv/www/panther_documents/media
+            - ./panther_documents/logs:/srv/www/panther_documents/logs
+            - ./docker/nginx:/etc/nginx/conf.d
+# и nginx зависит от контейнера python. Т.е. python должен быть запущен первым
+        depends_on:
+            - python
+
+    python:
+        restart: always
+# указываем откуда собирать образ
+        build:
+            context: .
+            dockerfile: docker/python/Dockerfile
+# монтируем директорию проекта
+        volumes:
+            - ./panther_documents:/srv/www/panther_documents
+        expose:
+          - 8000
+        ports:
+            - "8000:8000"
+# запускаем gunicorn
+        command: "gunicorn -c gunicorn.py panther_documents.wsgi"
+
+    postgres:
+        image: postgres:latest
+        ports:
+            - "5432:5432"
+        env_file: .env
+        environment:
+            PGDATA: /var/lib/postgresql/data
+        volumes:
+            - pgdata:/var/lib/postgresql/data

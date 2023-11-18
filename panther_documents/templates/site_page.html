@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block link_css %}
+    <link type="text/css" rel="stylesheet" href="{% static 'components/burger2close.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'components/lang_switch.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'components/currency_switch.css' %}">
+
+    <link type="text/css" rel="stylesheet" href="{% static 'header.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'footer.css' %}">
+    {% block additional_css %}{% endblock %}
+{% endblock %}
+
+{% block header %}
+    {% include 'components/header.html' %}
+{% endblock %}
+
+{% block footer %}
+    {% include 'components/footer.html' %}
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'components/burger2close.js' %}"></script> {# For mobile header #}
+    <script src="{% static 'components/lang_switch.js' %}"></script>
+    <script src="{% static 'components/currency_switch.js' %}"></script>
+
+    <script src="{% static 'header.js' %}"></script>
+    {% block additional_scripts %}{% endblock %}
+{% endblock %}

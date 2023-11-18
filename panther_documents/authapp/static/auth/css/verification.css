@@ -1,0 +1,17 @@
+.content_wrap {
+    display: flex;
+    min-height: calc(100vh - 101px - 121px);
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.content_wrap p {
+    font-size: 18px;
+    margin: 7px 0;
+}
+.content_wrap a {
+    font-size: 18px;
+    margin: 0;
+    text-decoration: none;
+    color: blue;
+}

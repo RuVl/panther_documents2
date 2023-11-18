@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block link_css %}
+    <link type="text/css" rel="stylesheet" href="{% static 'footer.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'auth/css/office.css' %}">
+    
+    <link rel="stylesheet" type="text/css" href="{% static 'libs/fontawesome/css/fontawesome.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'libs/fontawesome/css/duotone.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'libs/fontawesome/css/solid.css' %}">
+{% endblock %}
+
+
+{% block header %}
+	<div class="header_wrap">
+        <div class=""></div>
+        <nav class="top_menu">
+            <a href="{% url 'payment:send-links' %}">{% trans 'My purchases' %}</a>
+            <a href="{% url 'main:support' %}">{% trans 'Support' %}</a>
+        </nav>
+    </div>
+{% endblock %}
+
+
+{% block footer %}
+    {% include 'components/footer.html' %}
+{% endblock %}
+
+
+{% block main %}
+    <div class="main_wrap">
+        <div class="left_menu">
+            <ul class="menu_ul">
+                {% if user.is_staff %}
+                    <li class="menu_li">
+                        <a href="{% url 'admin:index' %}"><span>{% trans 'Admin panel' %}</span></a>
+                    </li>
+                {% endif %}
+                <li class="menu_li"><a href="{% url 'main:home' %}"><span>{% trans 'Shop' %}</span></a></li>
+                <li class="menu_li"><a href="{% url 'payment:send-links' %}"><span>{% trans 'My purchases' %}</span></a></li>
+                
+                <li class="menu_li"><a href="{% url 'auth:logout' %}"><span>{% trans 'Log out' %}</span></a></li>
+            </ul>
+        </div>
+        <div class="menu_content">
+            <p>
+                Добро пожаловать в ваш личный кабинет!<br><br>
+
+                Здесь вы найдете все необходимое для удобного управления вашим аккаунтом.<br><br>
+                
+                В разделе "Покупки" вы сможете получить приобретённые вами товары.<br><br>
+                
+                Если вы захотите выйти из своего аккаунта, воспользуйтесь кнопкой "Выход".<br><br>
+                
+                Спасибо, что выбрали нас! Мы надеемся, что ваш опыт с нами будет приятным и удобным.
+            </p>
+        </div>
+    </div>
+{% endblock %}

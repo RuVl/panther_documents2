@@ -1,0 +1,38 @@
+{% load static %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="{% static 'global.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'auth/css/auth.css' %}">
+    <title>404 не найдено</title>
+    <style>
+        .form_wrap h1 {
+            font-size: 72px;
+        }
+        .form_wrap p {
+            font-size: 22px;
+            margin: 0 0 15px;
+        }
+        .form_wrap a {
+            font-size: 22px;
+            margin: 0;
+            text-decoration: none;
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    <div class="page_wrap">
+        <div class="form_wrap">
+            <h1>404</h1>
+            <p>{% trans 'Page not found!' %}</p>
+            <a href="{% url 'main:home' %}">PantherDoc</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,26 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{ title }}</title>
+    <link type="text/css" rel="stylesheet" href="{% static 'global.css' %}">
+    {% block link_css %}{% endblock %}
+</head>
+<body>
+<header>
+    {% block header %}{% endblock %}
+</header>
+<main>
+    {% block popup %}{% endblock %}
+    {% block main %}{% endblock %}
+</main>
+<footer>
+    {% block footer %}{% endblock %}
+</footer>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,78 @@
+{% extends 'site_page.html' %}
+{% load static i18n currency %}
+
+{% block additional_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'payments/css/cart_page.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'main/css/popup.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'libs/fontawesome/css/fontawesome.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'libs/fontawesome/css/duotone.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'libs/fontawesome/css/solid.css' %}">
+{% endblock %}
+
+
+{% block additional_scripts %}
+    <!-- Translation in js -->
+    <script src="{% url 'javascript-catalog' %}"></script>
+    <script src="{% static 'payments/js/cart_list.js' %}"></script>
+    <script src="{% static 'payments/js/cart_buying_popup.js' %}"></script>
+{% endblock %}
+
+
+{% block main %}
+    <form id="get-products-form" action="{% url 'main:get-products' %}" method="post" style="display: none">
+        {% csrf_token %}
+    </form>
+    <div class="container">
+        <div class="empty_cart inactive">
+            <h3>{% trans 'You have not added any products to the cart' %}</h3>
+        </div>
+    </div>
+    {% currency_context %}
+    <div class="container">
+        <div class="cart_page_wrap inactive">
+            <h3 class="cart_page_header">{% trans 'Cart' %}</h3>
+            <div class="product_list"></div>
+            <div class="final_price_div">
+                <span>
+                    {% trans 'Total' %}:
+                    <!--suppress HtmlUnknownAttribute -->
+                    <span id="final_price" currency-factor="{{ CURRENCY.factor }}">0</span>
+                    <span class="currency-symbol">{{ CURRENCY.symbol }}</span>
+                </span>
+            </div>
+            <div class="pay_btn_div">
+                <button class="cart_pay_btn">{% trans 'Select payment method' %}</button>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block popup %}
+    <div class="popup">
+        <div class="popup_content">
+            <div class="popup_header" style="justify-content: space-between;">
+                <h3>{% trans 'Enter email' %}</h3>
+                <i class="fa-duotone fa-xmark fa-xl popup_close"></i>
+            </div>
+
+            <form method="dialog" onsubmit="send_pay_form(this)" action="{% url 'payment:cart' %}"
+                  class="popup_form" id="pay_form">
+                <div class="form_content">
+                    <div class="alert">
+                        <ul>
+                            <!-- TODO errors -->
+                        </ul>
+                    </div>
+
+                    {% csrf_token %}
+                    {{ form.as_div }}
+
+                    <div class="form_content_btns" style="margin-bottom: 10px;">
+                        <button type="submit" class="pay_btn">{% trans 'Pay' %}</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
