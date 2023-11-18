@@ -4,4 +4,9 @@ LABEL authors="ruvl"
 COPY ./panther_documents /srv/www/panther_documents
 WORKDIR /srv/www/panther_documents
 
-RUN pip install -r requirements.txt
+RUN pip3 install -r requirements.txt
+
+RUN chmod +x /docker-entrypoint.sh
+
+ENTRYPOINT ["docker-entrypoint.sh"]
+
