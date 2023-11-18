@@ -32,7 +32,7 @@ services:
 # указываем откуда собирать образ
         build:
             context: .
-            dockerfile: docker/python/Dockerfile
+            dockerfile: ./docker/python/Dockerfile
 # монтируем директорию проекта
         volumes:
             - ./panther_documents:/srv/www/panther_documents
