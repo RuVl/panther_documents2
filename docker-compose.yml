@@ -16,6 +16,7 @@ services:
             - ./docker/nginx/ssl:/usr/local/nginx/conf:ro
             - ./panther_documents/static:/srv/www/panther_documents/static
             - ./panther_documents/media:/srv/www/panther_documents/media
+            - ./panther_documents/logs:/srv/www/panther_documents/logs
         depends_on:
             - python
 
