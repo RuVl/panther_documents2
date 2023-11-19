@@ -213,10 +213,6 @@ if not DEBUG:
 
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-    SECURE_HSTS_SECONDS = 3600  # Send browser auto redirect to https header
-    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-    SECURE_HSTS_PRELOAD = True
-
 
 # Dirs that must exist
 must_exists: list[Path] = [
