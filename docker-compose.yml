@@ -12,7 +12,7 @@ services:
             - "80:80"
             - "443:443"
         volumes:
-            - ./docker/nginx/sites-enabled:/etc/nginx/sites-enabled:ro
+            - ./docker/nginx/configs:/etc/nginx/conf.d:ro
             - ./docker/nginx/ssl:/etc/nginx/ssl:ro
             - ./panther_documents/static:/srv/www/panther_documents/static
             - ./panther_documents/media:/srv/www/panther_documents/media
