@@ -37,3 +37,6 @@ venv.bak/
 migrations/
 
 todo.txt
+
+# SSL sertificates
+ssl/
