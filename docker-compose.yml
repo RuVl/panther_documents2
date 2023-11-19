@@ -6,14 +6,14 @@ volumes:
 
 services:
     nginx:
-        restart: unless-stopped
+        restart: always
         image: nginx:latest
         ports:
             - "80:80"
             - "443:443"
         volumes:
             - ./docker/nginx/configs:/etc/nginx/conf.d
-            - ./docker/nginx/ssl:/usr/local/nginx/conf:ro
+            - ./docker/ssl:/usr/local/nginx/conf
             - ./panther_documents/static:/srv/www/panther_documents/static
             - ./panther_documents/media:/srv/www/panther_documents/media
             - ./panther_documents/logs:/srv/www/panther_documents/logs
