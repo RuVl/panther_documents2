@@ -4,6 +4,7 @@ from datetime import timedelta
 from django.db import models
 from django.utils.timezone import now
 from django.utils.translation import get_language
+from django.utils.translation import gettext_lazy as _
 
 from authapp.models import ShopUser
 from paymentapp.utils import AllowedCurrencies
@@ -148,7 +149,12 @@ class Passport(BaseProduct):
     def to_json(self) -> str:
         return json.dumps(self.to_dict(), ensure_ascii=True)
 
+    def __str__(self):
+        return self.get_title()
+
     class Meta:
+        verbose_name = _('Passport')
+        verbose_name_plural = _('Passports')
         ordering = ['country']
 
 
@@ -175,6 +181,9 @@ class Country(models.Model):
             case _:
                 raise Exception('No translation for this language!')
 
+    def __str__(self):
+        return self.get_title()
+
     class Meta:
-        verbose_name = 'Country'
-        verbose_name_plural = 'Countries'
+        verbose_name = _('Country')
+        verbose_name_plural = _('Countries')

@@ -9,7 +9,7 @@
 main {
   display: flex;
   width: 100%;
-  justify-content: center;
+  /*justify-content: center;*/
   flex-direction: column;
   align-items: center;
 }
@@ -145,7 +145,6 @@ tbody tr {
     font-size: 16px;
     margin-top: 25px;
     margin-bottom: 50px;
-    border-collapse: collapse;
   }
   .products-table .product-count {
     width: 10%;
