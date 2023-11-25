@@ -167,6 +167,9 @@ class PassportFile(BaseProductItem):
     passport = models.ForeignKey(Passport, on_delete=models.CASCADE, null=True)
     file = models.FileField(upload_to='passports/', unique=True)
 
+    def __str__(self):
+        return f'{self.passport.get_title()} - {self.id}'
+
 
 class Country(models.Model):
     title_en = models.CharField(max_length=255)
