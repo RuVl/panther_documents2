@@ -52,7 +52,7 @@ INSTALLED_APPS = [
     'currencies',
     'captcha.apps.CaptchaConfig',
 
-    'authapp.apps.AuthConfig',
+    # 'authapp.apps.AuthConfig',
     'mainapp.apps.MainConfig',
     'paymentapp.apps.PaymentConfig'
 ]
@@ -180,31 +180,39 @@ OPENEXCHANGERATES_APP_ID = env('OPENEXCHANGERATES_APP_ID')
 
 # Logging
 LOGGING = {
-        'version': 1,
-        'disable_existing_loggers': False,
-        'formatters': {
-            'verbose': {
-                'format': '%(asctime)s %(levelname)s [%(name)s:%(lineno)s] %(module)s %(process)d %(thread)d %(message)s'
-            }
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '%(asctime)s %(levelname)s [%(name)s:%(lineno)s] %(module)s %(process)d %(thread)d %(message)s'
+        }
+    },
+    'handlers': {
+        'gunicorn': {
+            'level': 'DEBUG',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'formatter': 'verbose',
+            'filename': BASE_DIR / 'logs' / 'django.log',
+            'maxBytes': 1024 * 1024 * 20,  # 20 mb
         },
-        'handlers': {
-            'gunicorn': {
-                'level': 'DEBUG',
-                'class': 'logging.handlers.RotatingFileHandler',
-                'formatter': 'verbose',
-                'filename': BASE_DIR / 'logs' / 'django.log',
-                'maxBytes': 1024 * 1024 * 100,  # 100 mb
-            }
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
         },
-        'loggers': {
-            'gunicorn': {
-                'level': 'DEBUG',
-                'handlers': ['gunicorn'],
-                'propagate': True,
-            },
+    },
+    'loggers': {
+        '': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': False,
+        },
+        'gunicorn': {
+            'handlers': ['gunicorn'],
+            'level': 'DEBUG',
+            'propagate': True,
         }
     }
-
+}
 
 # Production
 if not DEBUG:

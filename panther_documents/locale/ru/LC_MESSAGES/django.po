@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-19 00:56+0300\n"
+"POT-Creation-Date: 2023-12-14 14:43+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -81,6 +81,28 @@ msgstr "Личный кабинет"
 msgid "Already activated"
 msgstr "Уже активирован"
 
+#: .\mainapp\models.py:156
+msgid "Passport"
+msgstr "Паспорт"
+
+#: .\mainapp\models.py:157
+#, fuzzy
+#| msgid "Passport"
+msgid "Passports"
+msgstr "Паспорт"
+
+#: .\mainapp\models.py:191
+#, fuzzy
+#| msgid "Count"
+msgid "Country"
+msgstr "Кол-во"
+
+#: .\mainapp\models.py:192
+#, fuzzy
+#| msgid "Count"
+msgid "Countries"
+msgstr "Кол-во"
+
 #: .\mainapp\templates\main\passports.html:45
 msgid "Add to cart"
 msgstr "Добавить в корзину"
@@ -96,8 +118,10 @@ msgid "Buy"
 msgstr "Купить"
 
 #: .\mainapp\templates\main\passports.html:62
-msgid "Passport"
-msgstr "Паспорт"
+#, fuzzy
+#| msgid "Product"
+msgid "Products list"
+msgstr "Список товаров"
 
 #: .\mainapp\templates\main\passports.html:63
 msgid "Count"
@@ -107,7 +131,7 @@ msgstr "Кол-во"
 msgid "Unit price"
 msgstr "За 1 шт."
 
-#: .\mainapp\templates\main\passports.html:108
+#: .\mainapp\templates\main\passports.html:109
 msgid "All products are sold out"
 msgstr "Все товары распроданы"
 
@@ -177,7 +201,8 @@ msgstr "Отправить ссылки"
 
 #: .\paymentapp\views.py:46
 msgid "Can not create transaction. Try again or write to support."
-msgstr "Не удалось создать транзакцию. Попробуйте ещё раз или обратитесь в поддержку."
+msgstr ""
+"Не удалось создать транзакцию. Попробуйте ещё раз или обратитесь в поддержку."
 
 #: .\templates\404.html:33
 msgid "Page not found!"

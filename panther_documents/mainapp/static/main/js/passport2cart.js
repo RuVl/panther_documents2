@@ -75,8 +75,8 @@ document.addEventListener("DOMContentLoaded", () => {
 				id: parseInt(tr.querySelector('.product-id').textContent),
 				title: tr.querySelector('.product-title').textContent,
 				max_count: parseInt(tr.querySelector('.product-count').textContent),
-				price: tr.querySelector('.price').textContent,
-				count: 1, // default
+				price: parseFloat(tr.querySelector('.price').textContent.trim()),
+				count: 1, // default add 1
 				type: tr.getAttribute('product-type'),
 			}
 
