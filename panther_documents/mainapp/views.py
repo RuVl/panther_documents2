@@ -13,10 +13,7 @@ CreateView - создание записи с помощью формы
 
 
 class PassportListView(ListView):
-    queryset = (Country.objects.exclude(passport__isnull=True)
-                .exclude(passport__passportfile__is_sold=True)
-                .exclude(passport__passportfile__is_reserved=True)
-                .prefetch_related('passport_set').all())
+    queryset = Country.get_countries_queryset().all()
     template_name = 'main/passports.html'
     context_object_name = 'countries'  # Переменная в шаблоне для модели
 

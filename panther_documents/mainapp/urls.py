@@ -6,7 +6,8 @@ from .views import PassportListView, SupportView, page_not_found, get_products
 app_name = 'main'
 
 urlpatterns = [
-    path('', cache_page(60*60)(PassportListView.as_view()), name='home'),
+    # path('', cache_page(60*60)(PassportListView.as_view()), name='home'),
+    path('', PassportListView.as_view(), name='home'),
     path('get-products/', get_products, name='get-products'),
     path('support/', cache_page(60*60)(SupportView.as_view()), name='support')
 ]

@@ -52,7 +52,7 @@ INSTALLED_APPS = [
     'currencies',
     'captcha.apps.CaptchaConfig',
 
-    # 'authapp.apps.AuthConfig',
+    'authapp.apps.AuthConfig',
     'mainapp.apps.MainConfig',
     'paymentapp.apps.PaymentConfig'
 ]

@@ -6,6 +6,12 @@
   --blue: #7895CB;
 }
 
+@font-face {
+  font-family: 'Noto Color Emoji';
+  src: local("fonts/NotoColorEmoji.ttf"),
+    url("https://raw.githack.com/googlefonts/noto-emoji/main/fonts/NotoColorEmoji.ttf");
+}
+
 main {
   display: flex;
   width: 100%;
@@ -66,6 +72,9 @@ tbody tr {
   padding: 10px;
 }
 
+span.country-flag {
+  font-family: 'Noto Color Emoji';
+}
 
 .products-table .product-title {
   width: auto;

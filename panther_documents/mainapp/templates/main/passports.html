@@ -70,13 +70,16 @@
             {% currency_context %}
             {% for country in countries %}
                 <tr class="country-tr">
-                    <td colspan="10">{{ country.get_title }}</td>
+                    <td colspan="10"><span class="country-flag">{{ country.flag }}</span> {{ country.get_title }}</td>
                 </tr>
                 {% for product in country.passport_set.all %}
                     <!--suppress HtmlUnknownAttribute -->
                     <tr class="product-tr" product-type="{{ product.type }}">
                         <td class="product-id" style="display: none;">{{ product.id }}</td>
-                        <td class="product-title">{{ product.get_title }}</td>
+                        <td class="product-title">
+                            <span class="country-flag">{{ country.flag }}</span>
+                            {{ product.get_title }}
+                        </td>
                         <td class="product-count">{{ product.get_count }}</td>
                         <!--suppress HtmlUnknownAttribute -->
                         <td class="product-price price-{{ CURRENCY_CODE }}" base-currency-price="{{ product.price }}">

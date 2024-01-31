@@ -69,6 +69,8 @@ class BaseProduct(models.Model):
 
 
 class Passport(BaseProduct):
+    number = models.IntegerField(default=None, null=True, unique=True)
+
     type = models.CharField(default=BaseProduct.ProductTypes.PASSPORT, blank=True, editable=False)
     country = models.ForeignKey('Country', on_delete=models.PROTECT)
 
@@ -172,6 +174,8 @@ class PassportFile(BaseProductItem):
 
 
 class Country(models.Model):
+    flag = models.CharField(_('Country flag'), max_length=30, null=True, default=None)
+
     title_en = models.CharField(max_length=255)
     title_ru = models.CharField(max_length=255)
 
@@ -186,6 +190,22 @@ class Country(models.Model):
 
     def __str__(self):
         return self.get_title()
+
+    @staticmethod
+    def get_countries_queryset():
+        queryset = (Country.objects.exclude(passport__isnull=True)
+                    .exclude(passport__passportfile__isnull=True)
+                    .exclude(passport__passportfile__is_sold=True)
+                    .exclude(passport__passportfile__is_reserved=True)
+                    .prefetch_related('passport_set'))
+
+        match get_language():
+            case 'ru':
+                queryset.order_by('title_ru')
+            case 'en-us':
+                queryset.order_by('title_en')
+
+        return queryset
 
     class Meta:
         verbose_name = _('Country')
