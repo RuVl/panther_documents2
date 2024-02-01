@@ -8,6 +8,7 @@ from django.utils.translation import get_language
 from django.utils.translation import gettext_lazy as _
 
 from authapp.models import ShopUser
+from mainapp.managers import CountryManager
 from paymentapp.utils import AllowedCurrencies
 
 
@@ -125,10 +126,10 @@ class Passport(BaseProduct):
         match get_language():
             case 'ru':
                 return self.title_ru
-            case 'en-us':
+            case 'en-us' | None:
                 return self.title_en
-            case _:
-                raise Exception('No translation for this language!')
+            case _ as lang:
+                raise Exception(f'No translation for {lang} language!')
 
     def to_dict(self) -> dict:
         max_count = self.get_count()
@@ -154,13 +155,13 @@ class Passport(BaseProduct):
         return self.get_title()
 
     class Meta:
-        verbose_name = _('Passport')
-        verbose_name_plural = _('Passports')
+        verbose_name = _('Document type')
+        verbose_name_plural = _('Document types')
         ordering = ['country']
 
 
 class PassportFile(BaseProductItem):
-    number = models.IntegerField('Id', default=None, null=True)
+    number = models.CharField(_('Number'), max_length=15, default=None, null=True)
 
     path_was_given = models.BooleanField(default=False, blank=True)
 
@@ -171,7 +172,11 @@ class PassportFile(BaseProductItem):
     file = models.FileField(upload_to='passports/', unique=True)
 
     def __str__(self):
-        return f'{self.passport.get_title()} - {self.number}'
+        return self.number
+
+    class Meta:
+        verbose_name = _('Passport')
+        verbose_name_plural = _('Passports')
 
 
 class Country(models.Model):
@@ -180,40 +185,19 @@ class Country(models.Model):
     title_en = models.CharField(max_length=255)
     title_ru = models.CharField(max_length=255)
 
+    objects = CountryManager()
+
     def get_title(self):
         match get_language():
             case 'ru':
                 return self.title_ru
-            case 'en-us':
+            case 'en-us' | None:
                 return self.title_en
             case _:
                 raise Exception('No translation for this language!')
 
     def __str__(self):
         return self.get_title()
-
-    @staticmethod
-    def get_countries_with_passports():
-        queryset = (Country.objects.exclude(passport__isnull=True)
-                    # .exclude(passport__passportfile__isnull=True)  # Так нельзя - убирает все страны где нет всех товаров
-                    # .exclude(passport__passportfile__is_sold=True)
-                    # .exclude(passport__passportfile__is_reserved=True)
-                    .prefetch_related('passport_set'))
-
-        match get_language():
-            case 'ru':
-                queryset = queryset.order_by('title_ru')
-            case 'en-us':
-                queryset = queryset.order_by('title_en')
-
-        for country in queryset:
-            passports = country.passport_set.all()
-            passports = [passport for passport in passports if passport.get_count() > 0]
-            # print(dir(country.passport_set))
-            print(passports)
-            country.passport_set.set(passports)
-
-        return queryset
 
     class Meta:
         verbose_name = _('Country')

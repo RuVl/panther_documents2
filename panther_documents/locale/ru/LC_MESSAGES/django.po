@@ -1,14 +1,12 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-#, fuzzy
+# Copyright (C) 2023 RuVl
+# This file is distributed under the same license as the panther_documents package.
+# Russu Vlad ii13082004@gmail.com, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-14 14:43+0300\n"
+"POT-Creation-Date: 2024-02-01 17:08+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -73,7 +71,6 @@ msgstr "Успех"
 
 #: .\authapp\templates\auth\verification.html:25
 #: .\authapp\templates\auth\verification.html:30
-#: .\templates\components\header.html:13 .\templates\components\header.html:31
 msgid "Office"
 msgstr "Личный кабинет"
 
@@ -81,27 +78,37 @@ msgstr "Личный кабинет"
 msgid "Already activated"
 msgstr "Уже активирован"
 
-#: .\mainapp\models.py:156
+#: .\mainapp\models.py:158
+msgid "Document type"
+msgstr "Документация"
+
+#: .\mainapp\models.py:159
+msgid "Document types"
+msgstr "Документация"
+
+#: .\mainapp\models.py:164
+msgid "Number"
+msgstr "Номер"
+
+#: .\mainapp\models.py:178
 msgid "Passport"
 msgstr "Паспорт"
 
-#: .\mainapp\models.py:157
-#, fuzzy
-#| msgid "Passport"
+#: .\mainapp\models.py:179
 msgid "Passports"
-msgstr "Паспорт"
+msgstr "Паспорта"
 
-#: .\mainapp\models.py:191
-#, fuzzy
-#| msgid "Count"
+#: .\mainapp\models.py:183
+msgid "Flag"
+msgstr "Флаг"
+
+#: .\mainapp\models.py:203
 msgid "Country"
-msgstr "Кол-во"
+msgstr "Страна"
 
-#: .\mainapp\models.py:192
-#, fuzzy
-#| msgid "Count"
+#: .\mainapp\models.py:204
 msgid "Countries"
-msgstr "Кол-во"
+msgstr "Страны"
 
 #: .\mainapp\templates\main\passports.html:45
 msgid "Add to cart"
@@ -113,13 +120,11 @@ msgid "or"
 msgstr "или"
 
 #: .\mainapp\templates\main\passports.html:47
-#: .\mainapp\templates\main\passports.html:96
+#: .\mainapp\templates\main\passports.html:99
 msgid "Buy"
 msgstr "Купить"
 
 #: .\mainapp\templates\main\passports.html:62
-#, fuzzy
-#| msgid "Product"
 msgid "Products list"
 msgstr "Список товаров"
 
@@ -131,7 +136,7 @@ msgstr "Кол-во"
 msgid "Unit price"
 msgstr "За 1 шт."
 
-#: .\mainapp\templates\main\passports.html:109
+#: .\mainapp\templates\main\passports.html:112
 msgid "All products are sold out"
 msgstr "Все товары распроданы"
 
@@ -213,22 +218,12 @@ msgid "View site"
 msgstr "Просмотр сайта"
 
 #: .\templates\admin\base_site.html:44
-#, fuzzy
-#| msgid "Django Documentation"
 msgid "Documentation"
 msgstr "Документация"
 
 #: .\templates\admin\base_site.html:48
 msgid "Change password"
 msgstr "Сменить пароль"
-
-#: .\templates\components\header.html:10 .\templates\components\header.html:28
-msgid "Sign in"
-msgstr "Вход"
-
-#: .\templates\components\header.html:11 .\templates\components\header.html:29
-msgid "Sign up"
-msgstr "Регистрация"
 
 #: .\venv\Lib\site-packages\captcha\fields.py:20
 #: .\venv\Lib\site-packages\captcha\fields.py:21
@@ -1505,3 +1500,15 @@ msgstr "Django сообщество"
 #: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:248
 msgid "Connect, get help, or contribute"
 msgstr "Подключайтесь, получайте помощь или вносите свой вклад"
+
+#~ msgid "Passport type"
+#~ msgstr "Тип документа"
+
+#~ msgid "Passport types"
+#~ msgstr "Типы документов"
+
+#~ msgid "Sign in"
+#~ msgstr "Вход"
+
+#~ msgid "Sign up"
+#~ msgstr "Регистрация"

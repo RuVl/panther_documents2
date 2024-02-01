@@ -72,7 +72,7 @@
                 <tr class="country-tr">
                     <td colspan="10"><span class="country-flag">{{ country.flag }}</span> {{ country.get_title }}</td>
                 </tr>
-                {% for product in country.passport_set.all %}
+                {% for product in country.passports %}
                     <!--suppress HtmlUnknownAttribute -->
                     <tr class="product-tr" product-type="{{ product.type }}">
                         <td class="product-id" style="display: none;">{{ product.id }}</td>

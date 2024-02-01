@@ -13,7 +13,7 @@ CreateView - создание записи с помощью формы
 
 
 class PassportListView(ListView):
-    queryset = Country.get_countries_with_passports()
+    queryset = Country.objects.get_available_countries_with_passports()
     template_name = 'main/passports.html'
     context_object_name = 'countries'  # Переменная в шаблоне для модели
 

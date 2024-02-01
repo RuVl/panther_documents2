@@ -44,3 +44,20 @@ services:
             - pgdata:/var/lib/postgresql/data
             - ./docker/postgres/pg_hba.conf:/var/lib/postgresql/data/pg_hba.conf
             - ./docker/postgres/postgresql.conf:/var/lib/postgresql/data/postgresql.conf
+
+    postgres_backup:
+        image: postgres:latest
+        depends_on:
+            - postgres
+        volumes:
+            - ./database_backup:/backup
+        command: >
+            bash -c "while true; do
+              PGPASSWORD=$$POSTGRES_PASSWORD pg_dump -h postgres -U $$POSTGRES_USER -Fc $$POSTGRES_DB > /backup/$$(date +%Y-%m-%d-%H-%M-%S).dump
+              echo ""Backup done at $$(date +%Y-%m-%d_%H:%M:%S)""
+              ls -1 /backup/*.dump | head -n -3 | xargs rm -f
+              sleep 86400
+            done"
+        env_file: .env
+        environment:
+            PGDATA: /var/lib/postgresql/data
