@@ -2,6 +2,7 @@ import json
 from datetime import timedelta
 
 from django.db import models
+from django.db.models import Count, Case, When, Value
 from django.utils.timezone import now
 from django.utils.translation import get_language
 from django.utils.translation import gettext_lazy as _
@@ -69,8 +70,6 @@ class BaseProduct(models.Model):
 
 
 class Passport(BaseProduct):
-    number = models.IntegerField(default=None, null=True, unique=True)
-
     type = models.CharField(default=BaseProduct.ProductTypes.PASSPORT, blank=True, editable=False)
     country = models.ForeignKey('Country', on_delete=models.PROTECT)
 
@@ -161,6 +160,8 @@ class Passport(BaseProduct):
 
 
 class PassportFile(BaseProductItem):
+    number = models.IntegerField('Id', default=None, null=True)
+
     path_was_given = models.BooleanField(default=False, blank=True)
 
     is_reserved = models.BooleanField(default=False, blank=True)
@@ -170,11 +171,11 @@ class PassportFile(BaseProductItem):
     file = models.FileField(upload_to='passports/', unique=True)
 
     def __str__(self):
-        return f'{self.passport.get_title()} - {self.id}'
+        return f'{self.passport.get_title()} - {self.number}'
 
 
 class Country(models.Model):
-    flag = models.CharField(_('Country flag'), max_length=30, null=True, default=None)
+    flag = models.CharField(_('Flag'), max_length=30, null=True, default=None)
 
     title_en = models.CharField(max_length=255)
     title_ru = models.CharField(max_length=255)
@@ -192,18 +193,25 @@ class Country(models.Model):
         return self.get_title()
 
     @staticmethod
-    def get_countries_queryset():
+    def get_countries_with_passports():
         queryset = (Country.objects.exclude(passport__isnull=True)
-                    .exclude(passport__passportfile__isnull=True)
-                    .exclude(passport__passportfile__is_sold=True)
-                    .exclude(passport__passportfile__is_reserved=True)
+                    # .exclude(passport__passportfile__isnull=True)  # Так нельзя - убирает все страны где нет всех товаров
+                    # .exclude(passport__passportfile__is_sold=True)
+                    # .exclude(passport__passportfile__is_reserved=True)
                     .prefetch_related('passport_set'))
 
         match get_language():
             case 'ru':
-                queryset.order_by('title_ru')
+                queryset = queryset.order_by('title_ru')
             case 'en-us':
-                queryset.order_by('title_en')
+                queryset = queryset.order_by('title_en')
+
+        for country in queryset:
+            passports = country.passport_set.all()
+            passports = [passport for passport in passports if passport.get_count() > 0]
+            # print(dir(country.passport_set))
+            print(passports)
+            country.passport_set.set(passports)
 
         return queryset
 
