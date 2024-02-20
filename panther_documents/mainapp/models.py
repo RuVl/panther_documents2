@@ -2,7 +2,6 @@ import json
 from datetime import timedelta
 
 from django.db import models
-from django.db.models import Count, Case, When, Value
 from django.utils.timezone import now
 from django.utils.translation import get_language
 from django.utils.translation import gettext_lazy as _
@@ -163,10 +162,11 @@ class Passport(BaseProduct):
 class PassportFile(BaseProductItem):
     number = models.CharField(_('Number'), max_length=15, default=None, null=True)
 
-    path_was_given = models.BooleanField(default=False, blank=True)
+    # Путь был сформирован и отправлен на почту
+    path_was_given = models.BooleanField(default=False, blank=True, editable=False)
 
-    is_reserved = models.BooleanField(default=False, blank=True)
-    is_sold = models.BooleanField(default=False, blank=True)
+    is_reserved = models.BooleanField(_('Is reserved'), default=False, blank=True)
+    is_sold = models.BooleanField(_('Is sold'), default=False, blank=True)
 
     passport = models.ForeignKey(Passport, on_delete=models.CASCADE, null=True)
     file = models.FileField(upload_to='passports/', unique=True)

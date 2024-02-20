@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.utils.translation import gettext_lazy as _
 
 from mainapp.models import Passport, Country, PassportFile
 
@@ -23,10 +24,11 @@ class CountryAdmin(admin.ModelAdmin):
 
 @admin.register(PassportFile)
 class PassportFileAdmin(admin.ModelAdmin):
-    list_display = ('get_country', 'passport', '__str__',)
+    list_display = ('__str__', 'get_country', 'passport')
     list_filter = ('passport__country',)
     search_fields = ('number',)
 
     def get_country(self, obj):
         return obj.passport.country
-    get_country.short_description = 'Country'
+
+    get_country.short_description = _('Country')

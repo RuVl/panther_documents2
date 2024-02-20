@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-01 17:08+0300\n"
+"POT-Creation-Date: 2024-02-01 17:30+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -78,17 +78,29 @@ msgstr "Личный кабинет"
 msgid "Already activated"
 msgstr "Уже активирован"
 
-#: .\mainapp\models.py:158
+#: .\mainapp\admin.py:34 .\mainapp\models.py:203
+msgid "Country"
+msgstr "Страна"
+
+#: .\mainapp\models.py:157
 msgid "Document type"
-msgstr "Документация"
+msgstr "Тип документа"
 
-#: .\mainapp\models.py:159
+#: .\mainapp\models.py:158
 msgid "Document types"
-msgstr "Документация"
+msgstr "Типы документов"
 
-#: .\mainapp\models.py:164
+#: .\mainapp\models.py:163
 msgid "Number"
 msgstr "Номер"
+
+#: .\mainapp\models.py:168
+msgid "Is reserved"
+msgstr "Зарезервирован"
+
+#: .\mainapp\models.py:169
+msgid "Is sold"
+msgstr "Продан"
 
 #: .\mainapp\models.py:178
 msgid "Passport"
@@ -101,10 +113,6 @@ msgstr "Паспорта"
 #: .\mainapp\models.py:183
 msgid "Flag"
 msgstr "Флаг"
-
-#: .\mainapp\models.py:203
-msgid "Country"
-msgstr "Страна"
 
 #: .\mainapp\models.py:204
 msgid "Countries"

@@ -1,5 +1,3 @@
-import logging
-
 from django.db import models
 from django.utils.translation import get_language
 
@@ -22,8 +20,7 @@ class CountryManager(models.Manager):
                 return super().get_queryset().order_by('title_en')
 
     def get_available_countries_with_passports(self):
-        queryset = (super().get_queryset().exclude(passport__isnull=True)
-                    .prefetch_related('passport_set'))
+        queryset = super().get_queryset().prefetch_related('passport_set')
 
         for country in queryset:
             country.passports = [passport for passport in country.passport_set.all() if passport.get_count() > 0]
